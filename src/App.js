@@ -16,8 +16,8 @@ export default class App extends Component {
             <Switch>
               <Route path='/login' component={LoginForm} />
               <Route path='/register' component={Register} />
-              <Route path='/welcome' component={authenticate(Welcome)} />
-              <Route render={() => <h3>No Match</h3>} />
+              <Route path='/welcome' component={Welcome} />
+              <Route render={() => <h3>Must Login</h3>} />
             </Switch>
           </div>
         </BrowserRouter>)

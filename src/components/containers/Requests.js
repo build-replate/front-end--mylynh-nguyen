@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import Requests from '../presentation/Requests';
+import Requests from '../presentational/Requests';
 
 function mapStateToProps(state) {
     return state.request

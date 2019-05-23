@@ -6,13 +6,13 @@ export default function(ComponentToBeRendered) {
 
   class Authenticate extends Component {
     componentWillMount() {
-      if (!this.props.isAuthenticated) {
+      if (!this.props.loggedIn) {
         this.props.history.push('/login');
       }
     }
 
     componentWillUpdate(nextProps) {
-      if (!nextProps.isAuthenticated) {
+      if (!nextProps.loggedIn) {
         this.props.history.push('/login');
       }
     }
@@ -26,7 +26,7 @@ export default function(ComponentToBeRendered) {
 
   function mapStateToProps(state) {
     return {
-      isAuthenticated: state.isAuthenticated
+      loggedIn: state.loggedIn
     };
   }
 

@@ -6,20 +6,29 @@ import {
 const INITIAL_STATE = {
     fetching: false,
     errors: [],
-    authToken: localStorage.getItem('jwt'),
-
     requests: []
   };
 
 export default function authReducer(state = INITIAL_STATE, action) {
+    console.log(action.payload);
     switch(action.type) {
       case FETCH_REQUEST_START:
+        return state
       case FETCH_REQUEST_SUCCESS:
-      case FETCH_REQUEST_FAILURE:
+        return {
+          ...state, requests: "hello"
+        }
+      // case FETCH_REQUEST_FAILURE:
+      //   return state
 
       case FETCH_ALL_REQUESTS_START:
+        return state
       case FETCH_ALL_REQUESTS_SUCCESS:
+        return {
+          ...state, requests: action.payload
+        }
       case FETCH_ALL_REQUESTS_FAILURE:
+        return state
       
       default:
         return state;

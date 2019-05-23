@@ -8,8 +8,13 @@ import { withRouter } from 'react-router-dom';
 import { loginUser, logout } from '../../actions';
 // TODO: import the rest of the action creators from the actions folder
 
+const mapStateToProps = state => {
+    return {
+        loggedIn: state.auth.loggedIn
+    }
+}
 
 export default compose(
     withRouter,
-    connect(null, { loginUser, logout })
+    connect(mapStateToProps, { loginUser, logout })
 )(LoginForm)

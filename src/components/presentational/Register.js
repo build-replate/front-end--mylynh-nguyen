@@ -5,9 +5,7 @@ import PropTypes from 'prop-types';
 export default class Register extends Component {
     state = {
       username: '',
-      business_name: '',
       contact_name: '',
-      address: '',
       password: '',
       phone:'',
       user_type: 'volunteer', // todo: use radio buttons to set this state
