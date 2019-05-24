@@ -1,7 +1,5 @@
 import {
     FETCH_USERS_START, FETCH_USERS_SUCCESS, FETCH_USERS_FAILURE,
-    ADD_USER_START, ADD_USER_SUCCESS, ADD_USER_FAILURE,
-    UPDATE_USER_START, UPDATE_USER_SUCCESS, UPDATE_USER_FAILURE,
     DELETE_USER_START, DELETE_USER_SUCCESS, DELETE_USER_FAILURE
 } from '../actions'
 
@@ -41,13 +39,13 @@ export default function userReducer(state=initialState, action) {
         case DELETE_USER_SUCCESS:
           return {
             ...state,
-            deletingUSER: false,
+            deletingUser: false,
             users: action.payload
           }
         case DELETE_USER_FAILURE:
           return {
             ...state,
-            deletingUSER: false,
+            deletingUser: false,
             errors: action.payload
           }
         default:

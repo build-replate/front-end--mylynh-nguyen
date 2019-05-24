@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 
-
-export default class Register extends Component {
+export default class RegisterBusiness extends Component {
     state = {
       username: '',
       contact_name: '',
+      business_name:'',
+      address:'',
       password: '',
       phone:'',
-      user_type: 'volunteer',
+      user_type: 'business',
       email: ''
     };
 
@@ -20,6 +20,7 @@ export default class Register extends Component {
     e.preventDefault();
     this.props.registerUser(this.state);
     this.props.history.push('/login');
+  
   }
 
   render() {
@@ -108,7 +109,3 @@ export default class Register extends Component {
   }
 }
 
-
-Register.propTypes = {
-  signup: PropTypes.func.isRequired
-};

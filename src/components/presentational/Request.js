@@ -7,6 +7,7 @@ const Request = props => {
       <div className="request">
         <h3>{props.title}</h3>
         <h4>Deadline: {props.expiresDate}, {props.expiresTime}</h4>
+        <h5>from {props.businessName}, pickup at {props.businessAddress}</h5>
         <p>{props.desc}</p>
         
         <button onClick={() => props.deleteRequest(props.id)}>Delete</button>

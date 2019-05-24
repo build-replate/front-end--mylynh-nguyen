@@ -17,7 +17,8 @@ export default class NavigationBar extends Component {
   
       const guestLinks = (
           <ul className="nav navbar-nav navbar-right">
-            <li><Link to="/register">Register</Link></li>
+            <li><Link to="/register">Volunteer Registration</Link></li>
+            <li><Link to="/register-business">Business Registration</Link></li>
             <li><Link to="/login">Login</Link></li>
           </ul>
       );
