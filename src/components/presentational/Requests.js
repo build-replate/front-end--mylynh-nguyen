@@ -17,6 +17,8 @@ export default class Requests extends Component {
                   expiresDate={request.request_expires_date}
                   expiresTime={request.request_expires_time}
                   key={request.id}
+                  volunteer={request.volunteer_assigned ? request.volunteer_assigned : "none assigned yet"}
+
                   businessName= {request.business_requesting ? request.business_requesting.business_name : "anonymous"}
                   businessAddress={request.business_requesting ? request.business_requesting.address : "main office"}
                 />

@@ -7,6 +7,7 @@ const User = props => {
       <div className="request">
       <h2>{props.name}</h2>
      <h4>Business Name: {props.businessName}</h4>
+     <h4>User Name: {props.username}</h4>
      <h4>Email: {props.email}</h4>
      <h4>Phone: {props.phone}</h4>
      <h4>Role: {props.userType}</h4>

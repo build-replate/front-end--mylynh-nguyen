@@ -32,7 +32,31 @@ export const fetchAllUsers = () => (dispatch) => {
       }))
   }
 
+  export const FETCH_USER_START = "FETCH_USER_START"
+  export const FETCH_USER_SUCCESS = "FETCH_USER_SUCCESS"
+  export const FETCH_USER_FAILURE = "FETCH_USER_FAILURE"
 
+
+  export const fetchUserById = (id) => (dispatch) => {
+    dispatch({type: FETCH_USER_START })
+    const request = {
+      headers: {authorization:localStorage.getItem('jwt')}
+  }
+    axios
+        .get(`${BASE_URL}/users/${id}`, request)
+        .then(res => {
+            dispatch({
+                type: FETCH_USER_SUCCESS,
+                payload: res
+            })
+        })
+        .catch(err => {
+            dispatch({
+                type: FETCH_USER_FAILURE,
+                payload: err
+            })
+        })
+}
 
 // UPDATE
 

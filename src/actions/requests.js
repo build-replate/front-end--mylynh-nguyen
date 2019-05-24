@@ -16,6 +16,10 @@ export const ADD_REQUEST_START = "ADD_REQUEST_START"
 export const ADD_REQUEST_SUCCESS = "ADD_REQUEST_SUCCESS"
 export const ADD_REQUEST_FAILURE = "ADD_REQUEST_FAILURE"
 
+export const ACCEPT_REQUEST_START = "ACCEPT_REQUEST_START"
+export const ACCEPT_REQUEST_SUCCESS = "ACCEPT_REQUEST_SUCCESS"
+export const ACCEPT_REQUEST_FAILURE = "ACCEPT_REQUEST_FAILURE"
+
 const BASE_URL = 'https://replate-lambda.herokuapp.com';
 
 export const fetchRequestById = (id) => (dispatch) => {
@@ -79,6 +83,28 @@ export const fetchAllRequests = () => (dispatch) => {
             console.log(err)
             })
     }
+
+export const acceptRequest = (id) => dispatch => {
+    dispatch({type: ACCEPT_REQUEST_START});
+    const request = {
+        headers: {authorization:localStorage.getItem('jwt')}
+    }
+    
+    axios
+      .put(`${BASE_URL}/requests/${id}`, request)
+      .then(res => {
+          dispatch({
+              type: ACCEPT_REQUEST_SUCCESS,
+              payload: {
+                volunteer_assigned: id
+              }
+          })
+      })
+      .catch(err => dispatch({
+          type: ACCEPT_REQUEST_FAILURE,
+          payload: err
+      }))
+}
 
 export const deleteRequest = (id) => dispatch => {
     dispatch({ type: DELETE_REQUEST_START});

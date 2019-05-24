@@ -15,6 +15,7 @@ export default class UserList extends Component {
                   id={user.id}
                   businessName={user.business_name ? user.business_name : "N/A"}
                   address={user.address ? user.address : "N/A"}
+                  username={user.username}
                   email={user.email}
                   phone={user.phone}
                   key={user.id}
