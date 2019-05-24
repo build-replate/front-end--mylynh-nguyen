@@ -1,25 +1,28 @@
-import React, {useEffect} from 'react';
-import {connect} from 'react-redux';
-import {deleteRequest} from '../../actions'
+import React, { Component } from 'react';
+import Request from './Request';
 
-const Requests = (props) => {
 
-    const RequestList = props.requests.map(request => { 
-        return (
-            <div className='request-card' key={request.id}>
-                <li>Title: {request.request_title}</li>
-                <li>Description: {request.request_desc}</li>
-                {/* <li>Business Requesting: {request.business_requesting}</li> */}
-                <li>Request Expires: {request.request_expires_date}, {request.request_expires_time}</li>
-                <button onClick={() => props.deleteRequest(request.id)}>Delete</button>
-            </div>
-        )
-    });
-
-    return (
-        <div className="request-list">
-            {RequestList}
+export default class Requests extends Component {
+    render() {
+      return (
+        <div className="requests-list">
+          <h1>List of Requests</h1>
+          <ul>
+            {this.props.requests.map(request => {
+              return (
+                <Request
+                  title={request.request_title}
+                  id={request.id}
+                  desc={request.request_desc}
+                  expiresDate={request.request_expires_date}
+                  expiresTime={request.request_expires_time}
+                  key={request.id}
+                />
+              );
+            })}
+          </ul>
         </div>
-    )
-}
-export default connect( null, {deleteRequest}) (Requests);
+      );
+    }
+  }
+  

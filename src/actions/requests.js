@@ -64,6 +64,7 @@ export const deleteRequest = (id) => dispatch => {
           type: DELETE_REQUEST_SUCCESS,
           payload: res.data
         })
+        //see if res.data need to be specific, ignore for now
       })
       .catch(err => dispatch({
         type: DELETE_REQUEST_FAILURE,
