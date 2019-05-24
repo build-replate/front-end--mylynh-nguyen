@@ -22,7 +22,7 @@ export default class App extends Component {
               <Route path='/add-request' component={AddRequest} />
               <Route path='/welcome' component={authenticate(Welcome)} />
               <Route path='/users' component={UserPage} />
-              <Route render={() => <h3>Must Login</h3>} />
+              <Route render={() => <h3>Welcome to Replate</h3>} />
             </Switch>
           </div>
         </BrowserRouter>)

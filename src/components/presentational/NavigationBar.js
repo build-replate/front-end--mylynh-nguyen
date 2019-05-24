@@ -20,7 +20,7 @@ export default class NavigationBar extends Component {
       );
 
       const volunteerLinks = (
-        <ul className="nav navbar-nav navbar-right">
+        <ul>
           <li><a href="#" onClick={this.logout}>Logout</a></li>
           <li><Link to="/welcome">Requests</Link></li>
           <li><Link to="/users">User List</Link></li>
@@ -29,7 +29,7 @@ export default class NavigationBar extends Component {
       );
   
       const guestLinks = (
-          <ul className="nav navbar-nav navbar-right">
+          <ul>
             <li><Link to="/register">Volunteer Registration</Link></li>
             <li><Link to="/register-business">Business Registration</Link></li>
             <li><Link to="/login">Login</Link></li>
@@ -37,12 +37,12 @@ export default class NavigationBar extends Component {
       );
   
       return (
-          <nav className="navbar navbar-default">
+          <nav>
             <div className="container-fluid">
               <div className="navbar-header">
                 <Link to="/" className="navbar-brand">Replate</Link>
               </div>
-              <div className="collapse navbar-collapse">
+              <div>
                 {/* {this.props.loggedIn ? userLinks : guestLinks} */}
                 {this.props.loggedIn ? this.props.currentUser.userType === "business" ? businessLinks : this.props.currentUser.userType === "volunteer" ? volunteerLinks : guestLinks : guestLinks}
               </div>
