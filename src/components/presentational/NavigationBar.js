@@ -9,9 +9,20 @@ export default class NavigationBar extends Component {
     }
   
     render() {
-      const userLinks = (
+
+      const businessLinks = (
+        <ul className="nav navbar-nav navbar-right">
+        <li><a href="#" onClick={this.logout}>Logout</a></li>
+        <li><Link to="/add-request">Add a request</Link></li>
+        <li><Link to="/welcome">Requests</Link></li>
+        </ul>
+      );
+
+      const volunteerLinks = (
         <ul className="nav navbar-nav navbar-right">
           <li><a href="#" onClick={this.logout}>Logout</a></li>
+          <li><Link to="/welcome">Requests</Link></li>
+    
         </ul>
       );
   
@@ -27,10 +38,11 @@ export default class NavigationBar extends Component {
           <nav className="navbar navbar-default">
             <div className="container-fluid">
               <div className="navbar-header">
-                <Link to="/home" className="navbar-brand">Replate</Link>
+                <Link to="/" className="navbar-brand">Replate</Link>
               </div>
               <div className="collapse navbar-collapse">
-                {this.props.loggedIn ? userLinks : guestLinks}
+                {/* {this.props.loggedIn ? userLinks : guestLinks} */}
+                {this.props.loggedIn ? this.props.currentUser.userType === "business" ? businessLinks : this.props.currentUser.userType === "volunteer" ? volunteerLinks : guestLinks : guestLinks}
               </div>
             </div>
           </nav>
