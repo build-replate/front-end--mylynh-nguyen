@@ -6,7 +6,7 @@ import RegisterBusiness from './components/containers/RegisterBusiness';
 import Welcome from './components/presentational/Welcome';
 import NavigationBar from './components/containers/NavigationBar';
 import authenticate from './components/higher-order/authenticate';
-import Home from './components/presentational/Home'
+import Users from './components/presentational/Users';
 import AddRequest from './components/containers/AddRequest';
 
 export default class App extends Component {
@@ -21,7 +21,7 @@ export default class App extends Component {
               <Route path='/register' component={Register} />
               <Route path='/add-request' component={AddRequest} />
               <Route path='/welcome' component={authenticate(Welcome)} />
-              <Route path='/home' component={authenticate(Home)} />
+              <Route path='/users' component={authenticate(Users)} />
               <Route render={() => <h3>Must Login</h3>} />
             </Switch>
           </div>
