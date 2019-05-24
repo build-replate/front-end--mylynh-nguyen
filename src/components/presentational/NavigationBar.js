@@ -15,6 +15,7 @@ export default class NavigationBar extends Component {
         <li><a href="#" onClick={this.logout}>Logout</a></li>
         <li><Link to="/add-request">Add a request</Link></li>
         <li><Link to="/welcome">Requests</Link></li>
+        <li><Link to="/users">User List</Link></li>
         </ul>
       );
 
@@ -22,6 +23,7 @@ export default class NavigationBar extends Component {
         <ul className="nav navbar-nav navbar-right">
           <li><a href="#" onClick={this.logout}>Logout</a></li>
           <li><Link to="/welcome">Requests</Link></li>
+          <li><Link to="/users">User List</Link></li>
     
         </ul>
       );
