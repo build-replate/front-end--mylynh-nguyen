@@ -1,5 +1,5 @@
 import axios from 'axios';
-// import jwtDecode from 'jwt-decode';
+import jwtDecode from 'jwt-decode';
 
 const BASE_URL = 'https://replate-lambda.herokuapp.com';
 
@@ -49,7 +49,7 @@ axios
         localStorage.setItem('jwt', res.data.token);
         dispatch({
             type: LOGIN_USER_SUCCESS,
-            payload: res.data
+            payload: jwtDecode(res.data.token)
         })
     })
     .catch(err => { 

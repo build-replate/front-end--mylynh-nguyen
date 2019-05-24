@@ -26,7 +26,7 @@ export default function(ComponentToBeRendered) {
 
   function mapStateToProps(state) {
     return {
-      loggedIn: state.loggedIn
+      loggedIn: state.auth.loggedIn
     };
   }
 

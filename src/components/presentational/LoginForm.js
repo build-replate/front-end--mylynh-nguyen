@@ -18,7 +18,11 @@ export default class LoginForm extends Component {
   onSubmit(e) {
     e.preventDefault();
     this.props.loginUser(this.state);
-    this.props.history.push('/welcome');
+    console.log(this.props.loggedIn);
+    if(this.props.loggedIn) {
+      this.props.history.push('/welcome');
+    }
+
 
     // .then(
     //   // make sure we use arrow functions to bind `this` correctly
