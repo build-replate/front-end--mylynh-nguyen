@@ -1,18 +1,18 @@
 import React, { Component } from 'react';
 import { fetchAllUsers } from '../../actions';
 import { connect } from 'react-redux';
+import UserList from './UserList'
 
-class Users extends Component {
+class UserPage extends Component {
 
     componentDidMount(){
         this.props.fetchAllUsers();
-        console.log(this.props);
     }
 
     render() {
         return (
             <div>
-               hello
+              <UserList users={this.props.users} />
             </div>
         )
     }
@@ -20,9 +20,8 @@ class Users extends Component {
 const mapStateToProps = (state) =>{
     console.log(state)
     return {
-        // users: state.requests.requests,
-        loggedIn: state.auth.loggedIn
+        users: state.user.users
     }
 }
-export default connect(mapStateToProps, {fetchAllUsers})(Users);
+export default connect(mapStateToProps, {fetchAllUsers})(UserPage);
 

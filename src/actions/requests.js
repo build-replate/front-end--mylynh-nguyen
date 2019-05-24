@@ -86,7 +86,7 @@ export const deleteRequest = (id) => dispatch => {
         headers: {authorization:localStorage.getItem('jwt')}
     }
     axios
-      .delete(`${BASE_URL}/${id}`, request)
+      .delete(`${BASE_URL}/requests/${id}`, request)
       .then(res =>{
         dispatch({
           type: DELETE_REQUEST_SUCCESS,

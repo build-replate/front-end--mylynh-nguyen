@@ -7,7 +7,8 @@ export default class AddRequest extends Component {
       request_desc: '',
       completed: false,
       request_expires_date: '',
-      request_expires_time: ''
+      request_expires_time: '',
+      business_requesting: this.props.currentUser.subject
     };
 
   onChange = (e) => {
@@ -16,6 +17,7 @@ export default class AddRequest extends Component {
 
   onSubmit = (e) => {
     e.preventDefault();
+    console.log(this.props.currentUser.subject);
     this.props.addRequest(this.state);
     this.props.history.push('/welcome');
 

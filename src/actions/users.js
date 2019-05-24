@@ -51,24 +51,26 @@ export const DELETE_USER_START = 'DELETE_USER_START';
 export const DELETE_USER_SUCCESS = 'DELETE_USER_SUCCESS';
 
 
-export const deleteUser = (user) => dispatch => {
-    dispatch({ type: DELETE_USER_START});
-    const request = {
+export const deleteUser = (id) => dispatch => {
+  dispatch({ type: DELETE_USER_START});
+  const request = {
       headers: {authorization:localStorage.getItem('jwt')}
-    }
-    axios
-      .delete(`${BASE_URL}/${user.id}`, request)
-      .then(res =>{
-        dispatch({
-          type: DELETE_USER_SUCCESS,
-          payload: res.data
-        })
-      })
-      .catch(err => dispatch({
-        type: DELETE_USER_FAILURE,
-        payload: err
-      }))
   }
+  axios
+    .delete(`${BASE_URL}/users/${id}`, request)
+    .then(res =>{
+      dispatch({
+        type: DELETE_USER_SUCCESS,
+        payload: res.data
+      })
+      //see if res.data need to be specific, ignore for now
+    })
+    .catch(err => dispatch({
+      type: DELETE_USER_FAILURE,
+      payload: err
+    }))
+}
+
 
 
 

@@ -4,5 +4,8 @@ import { connect } from 'react-redux';
 import { addRequest } from '../../actions';
 import { withRouter } from 'react-router-dom';
 
+const mapStateToProps = (state) => {
+    return state.auth
+}
 
-export default withRouter(connect(null, { addRequest })(AddRequest));
+export default withRouter(connect(mapStateToProps, { addRequest })(AddRequest));
