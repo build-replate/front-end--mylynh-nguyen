@@ -1,35 +1,50 @@
 import {
-  FETCH_REQUEST_START, FETCH_REQUEST_SUCCESS, FETCH_REQUEST_FAILURE,
-  FETCH_ALL_REQUESTS_START, FETCH_ALL_REQUESTS_SUCCESS, FETCH_ALL_REQUESTS_FAILURE,
+  FETCH_ALL_REQUESTS_START, FETCH_ALL_REQUESTS_SUCCESS, FETCH_ALL_REQUESTS_FAILURE, DELETE_REQUEST_START, DELETE_REQUEST_SUCCESS, DELETE_REQUEST_FAILURE
 } from '../actions'
 
 const INITIAL_STATE = {
     fetching: false,
     errors: [],
-    requests: []
+    requests: [],
+    deletingRequest: false
   };
 
-export default function authReducer(state = INITIAL_STATE, action) {
-    console.log(action.payload);
+export default function requestsReducer(state = INITIAL_STATE, action) {
     switch(action.type) {
-      case FETCH_REQUEST_START:
-        return state
-      case FETCH_REQUEST_SUCCESS:
-        return {
-          ...state, requests: "hello"
-        }
-      // case FETCH_REQUEST_FAILURE:
-      //   return state
-
       case FETCH_ALL_REQUESTS_START:
-        return state
+        return {
+          ...state,
+          fetching: true
+        }
       case FETCH_ALL_REQUESTS_SUCCESS:
         return {
-          ...state, requests: action.payload
+          ...state, 
+          fetching: false,
+          requests: action.payload
         }
       case FETCH_ALL_REQUESTS_FAILURE:
-        return state
-      
+        return{
+          ...state,
+          fetching: false,
+          errors: action.payload
+        }
+      case DELETE_REQUEST_START:
+        return {
+          ...state,
+          deletingRequest: true
+        }
+      case DELETE_REQUEST_SUCCESS:
+        return {
+          ...state,
+          deletingRequest: false,
+          requests: action.payload
+        }
+      case DELETE_REQUEST_FAILURE:
+        return {
+          ...state,
+          deletingRequest: false,
+          errors: action.payload
+        }
       default:
         return state;
     }

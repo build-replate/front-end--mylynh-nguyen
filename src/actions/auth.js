@@ -1,17 +1,17 @@
 import axios from 'axios';
-import jwtDecode from 'jwt-decode';
+// import jwtDecode from 'jwt-decode';
 
 const BASE_URL = 'https://replate-lambda.herokuapp.com';
 
 // TODO: add action types
 
-export function setAuthorizationToken(token) {
-  if (token) {
-    axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-  } else {
-    delete axios.defaults.headers.common['Authorization'];
-  }
-}
+// export function setAuthorizationToken(token) {
+//   if (token) {
+//     axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+//   } else {
+//     delete axios.defaults.headers.common['Authorization'];
+//   }
+// }
 
 export const REGISTER_USER_START = "REGISTER_USER_START"
 export const REGISTER_USER_SUCCESS = "REGISTER_USER_SUCCESS"
@@ -33,6 +33,7 @@ export const registerUser = (user) => dispatch => {
                 type: REGISTER_USER_FAILURE,
                 payload: err
             })
+        console.log(err)
         })
 }
 

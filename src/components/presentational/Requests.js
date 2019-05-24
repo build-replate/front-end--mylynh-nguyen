@@ -4,8 +4,6 @@ import {deleteRequest} from '../../actions'
 
 const Requests = (props) => {
 
-    useEffect(() => (console.log(props)))
-
     const RequestList = props.requests.map(request => { 
         return (
             <div className='request-card' key={request.id}>

@@ -6,8 +6,8 @@ import thunk from 'redux-thunk';
 import logger from 'redux-logger'
 import { createStore, applyMiddleware, compose } from 'redux';
 import rootReducer from './reducers';
-import jwtDecode from 'jwt-decode';
-import { setAuthorizationToken } from './actions/index';
+// import jwtDecode from 'jwt-decode';
+// import { setAuthorizationToken } from './actions/index';
 
 const store = createStore(
   rootReducer,
@@ -19,15 +19,15 @@ const store = createStore(
 
 
 
-if (localStorage.jwtToken) {
-  setAuthorizationToken(localStorage.jwtToken);
+// if (localStorage.jwtToken) {
+//   setAuthorizationToken(localStorage.jwtToken);
 //   // prevent someone from manually setting a key of 'jwtToken' in localStorage
 //   try {
 //     store.dispatch(setCurrentUser(jwtDecode(localStorage.jwtToken)));
 //   } catch(e) {
 //     store.dispatch(setCurrentUser({}))
 //   }
-}
+// }
 
 ReactDOM.render(
     <Provider store={store}>

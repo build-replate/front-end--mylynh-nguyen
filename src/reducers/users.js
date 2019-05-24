@@ -8,31 +8,49 @@ import {
 
 const initialState = {
     fetching: false,
+    deletingUser: false,
     errors: [],
-    authToken: localStorage.getItem('jwt'),
-    users: []
+    users: [] 
 }
 
 
 export default function userReducer(state=initialState, action) {
     switch(action.type) {
-        // case FETCH_USERS_START:
-        // case FETCH_USERS_SUCCESS:
-        // case FETCH_USERS_FAILURE:
-
-        // case ADD_USER_START:
-        // case ADD_USER_SUCCESS:
-        // case ADD_USER_FAILURE:
-
-        // case UPDATE_USER_START:
-        // case UPDATE_USER_SUCCESS:
-        // case UPDATE_USER_FAILURE:
-
-        // case DELETE_USER_START:
-        // case DELETE_USER_SUCCESS:
-        // case DELETE_USER_FAILURE:
-
-        default: 
-            return state
+        case FETCH_USERS_START:
+          return {
+            ...state,
+            fetching: true
+          }
+        case FETCH_USERS_SUCCESS:
+          return {
+            ...state, 
+            fetching: false,
+            users: action.payload
+          }
+        case FETCH_USERS_FAILURE:
+          return{
+            ...state,
+            fetching: false,
+            errors: action.payload
+          }
+        case DELETE_USER_START:
+          return {
+            ...state,
+            deletingUser: true
+          }
+        case DELETE_USER_SUCCESS:
+          return {
+            ...state,
+            deletingUSER: false,
+            users: action.payload
+          }
+        case DELETE_USER_FAILURE:
+          return {
+            ...state,
+            deletingUSER: false,
+            errors: action.payload
+          }
+        default:
+          return state
     }
 }

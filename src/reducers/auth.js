@@ -6,10 +6,7 @@ import {
 
 
 const INITIAL_STATE = {
-    fetching: false,
-    loggedIn: false,
-    errors: [],
-    user_type: 'volunteer',   
+    loggedIn: false,  
   };
 
 export default function authReducer(state=INITIAL_STATE, action) {
@@ -20,15 +17,26 @@ export default function authReducer(state=INITIAL_STATE, action) {
                 ...state,
                 loggedIn: false
             }
+        case LOGIN_USER_START:
+            return {
+                ...state,
+                loggedIn: false
+            }
+        case LOGIN_USER_SUCCESS:
+            return {
+                ...state,
+                loggedIn: true
+            }
+        case LOGIN_USER_FAILURE:
+            return {
+                ...state,
+                loggedIn: false
+            }
 
-        // case LOGIN_USER_START:
-        // case LOGIN_USER_SUCCESS:
-        // case LOGIN_USER_FAILURE:
 
-
-        // case REGISTER_USER_START:
-        // case REGISTER_USER_SUCCESS:
-        // case REGISTER_USER_FAILURE:
+        case REGISTER_USER_START:
+        case REGISTER_USER_SUCCESS:
+        case REGISTER_USER_FAILURE:
       
         default:
             return state;
