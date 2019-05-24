@@ -19,7 +19,8 @@ export default function authReducer(state=INITIAL_STATE, action) {
             localStorage.getItem('jwt') && localStorage.removeItem('jwt')
             return {
                 ...state,
-                loggedIn: false
+                loggedIn: false,
+                currentUser: null
             }
         case LOGIN_USER_START:
             return {

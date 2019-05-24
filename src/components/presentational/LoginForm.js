@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+
 
 
 export default class LoginForm extends Component {
@@ -18,20 +18,12 @@ export default class LoginForm extends Component {
   onSubmit(e) {
     e.preventDefault();
     this.props.loginUser(this.state);
-    console.log(this.props.loggedIn);
-    if(this.props.loggedIn) {
-      this.props.history.push('/welcome');
-    }
-
-
-    // .then(
-    //   // make sure we use arrow functions to bind `this` correctly
-    //   (res) => this.props.history.push('/welcome'),
-    //   (err) => {
-    //     debugger
-    //   });
+      setTimeout(() => {   
+       if(this.props.currentUser !== null) {
+       this.props.history.push('/welcome');
+        } 
+      }, 3000);
   }
-
   onChange(e) {
     this.setState({ [e.target.name]: e.target.value });
   }
@@ -58,8 +50,4 @@ export default class LoginForm extends Component {
       </div>
     );
   }
-}
-// let's add some propTypes for additional validation and readability
-LoginForm.propTypes = {
-  login: PropTypes.func.isRequired
 }

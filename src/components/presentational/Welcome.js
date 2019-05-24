@@ -6,14 +6,13 @@ import { connect } from 'react-redux';
 export class Welcome extends Component {
 
     componentDidMount(){
-        this.props.fetchAllRequests()
+        this.props.fetchAllRequests();
     }
 
     render() {
         return (
             <div>
                <Requests requests={this.props.requests} />
-               Welcome
             </div>
         )
     }
@@ -21,7 +20,8 @@ export class Welcome extends Component {
 const mapStateToProps = (state) =>{
     console.log(state)
     return {
-        requests: state.requests.requests
+        requests: state.requests.requests,
+        loggedIn: state.auth.loggedIn
     }
 }
 export default connect(mapStateToProps, {fetchAllRequests})(Welcome);

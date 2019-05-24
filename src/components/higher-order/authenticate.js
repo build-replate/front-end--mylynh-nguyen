@@ -6,13 +6,13 @@ export default function(ComponentToBeRendered) {
 
   class Authenticate extends Component {
     componentWillMount() {
-      if (!this.props.loggedIn) {
+      if (this.props.currentUser === null) {
         this.props.history.push('/login');
       }
     }
 
     componentWillUpdate(nextProps) {
-      if (!nextProps.loggedIn) {
+      if (this.props.currentUser === null) {
         this.props.history.push('/login');
       }
     }
@@ -26,7 +26,8 @@ export default function(ComponentToBeRendered) {
 
   function mapStateToProps(state) {
     return {
-      loggedIn: state.auth.loggedIn
+      loggedIn: state.auth.loggedIn,
+      currentUser: state.auth.currentUser
     };
   }
 

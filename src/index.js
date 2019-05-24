@@ -6,8 +6,7 @@ import thunk from 'redux-thunk';
 import logger from 'redux-logger'
 import { createStore, applyMiddleware, compose } from 'redux';
 import rootReducer from './reducers';
-// import jwtDecode from 'jwt-decode';
-// import { setAuthorizationToken } from './actions/index';
+
 
 const store = createStore(
   rootReducer,

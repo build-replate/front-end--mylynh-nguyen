@@ -5,7 +5,7 @@ import Register from './components/containers/Register';
 import Welcome from './components/presentational/Welcome';
 import NavigationBar from './components/containers/NavigationBar';
 import authenticate from './components/higher-order/authenticate';
-
+import Home from './components/presentational/Home'
 
 export default class App extends Component {
   render(){
@@ -16,7 +16,8 @@ export default class App extends Component {
             <Switch>
               <Route path='/login' component={LoginForm} />
               <Route path='/register' component={Register} />
-              <Route path='/welcome' component={Welcome} />
+              <Route path='/welcome' component={authenticate(Welcome)} />
+              <Route path='/home' component={authenticate(Home)} />
               <Route render={() => <h3>Must Login</h3>} />
             </Switch>
           </div>

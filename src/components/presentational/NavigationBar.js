@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom';
 
 export default class NavigationBar extends Component {
     logout = (e) => {
-      e.preventDefault();
       this.props.logout();
+      this.props.history.push('/');
     }
   
     render() {
@@ -26,7 +26,7 @@ export default class NavigationBar extends Component {
           <nav className="navbar navbar-default">
             <div className="container-fluid">
               <div className="navbar-header">
-                <Link to="/" className="navbar-brand">Replate</Link>
+                <Link to="/home" className="navbar-brand">Replate</Link>
               </div>
               <div className="collapse navbar-collapse">
                 {this.props.loggedIn ? userLinks : guestLinks}

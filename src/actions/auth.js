@@ -51,6 +51,7 @@ axios
             type: LOGIN_USER_SUCCESS,
             payload: jwtDecode(res.data.token)
         })
+        
     })
     .catch(err => { 
         dispatch({
