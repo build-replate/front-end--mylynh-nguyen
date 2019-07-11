@@ -34,10 +34,15 @@ export default function requestsReducer(state = INITIAL_STATE, action) {
           deletingRequest: true
         }
       case DELETE_REQUEST_SUCCESS:
+        const { requests } = state;
+        const filteredRequests = requests.filter(request => {
+              return request.id != action.payload;
+        });
+         
         return {
           ...state,
           deletingRequest: false,
-          requests: action.payload
+          requests: [ ...filteredRequests ]
         }
       case DELETE_REQUEST_FAILURE:
         return {

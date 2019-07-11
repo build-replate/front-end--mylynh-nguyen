@@ -42,62 +42,62 @@ export const fetchRequestById = (id) => (dispatch) => {
 }
 
 export const fetchAllRequests = () => (dispatch) => {
-    dispatch({ type: FETCH_ALL_REQUESTS_START })
     const request = {
-        headers: {authorization:localStorage.getItem('jwt')}
-    }
-    axios
-        .get(`${BASE_URL}/requests`, request)
-        .then(res => {
-            dispatch({
-                type: FETCH_ALL_REQUESTS_SUCCESS,
-                payload: res.data
-            })
-        })
-        .catch(err => {
-            dispatch({
-                type: FETCH_ALL_REQUESTS_FAILURE,
-                payload: err
-            })
-        })
+        headers: {authorization: localStorage.getItem('jwt')}
     }
 
-    export const addRequest = (sentRequest) => dispatch => {
-        dispatch({ type:ADD_REQUEST_START });
-        const request = {
-            headers: {authorization:localStorage.getItem('jwt')}
-        }
-        axios.post(`${BASE_URL}/requests`, sentRequest, request)
+    if (request) {
+        dispatch({ type: FETCH_ALL_REQUESTS_START })
+        axios
+            .get(`${BASE_URL}/requests`, request)
             .then(res => {
-                localStorage.setItem('jwt', res.data.token);
                 dispatch({
-                    type: ADD_REQUEST_SUCCESS,
+                    type: FETCH_ALL_REQUESTS_SUCCESS,
                     payload: res.data
                 })
             })
             .catch(err => {
                 dispatch({
-                    type: ADD_REQUEST_FAILURE,
+                    type: FETCH_ALL_REQUESTS_FAILURE,
                     payload: err
                 })
-            console.log(err)
             })
     }
+}
 
-export const acceptRequest = (id) => dispatch => {
+export const addRequest = (sentRequest) => dispatch => {
+    dispatch({ type:ADD_REQUEST_START });
+    const request = {
+        headers: {authorization: localStorage.getItem('jwt')}
+    }
+    axios.post(`${BASE_URL}/requests`, sentRequest, request)
+        .then(res => {
+            dispatch({
+                type: ADD_REQUEST_SUCCESS,
+                payload: res.data
+            })
+        })
+        .catch(err => {
+            dispatch({
+                type: ADD_REQUEST_FAILURE,
+                payload: err
+            })
+        console.log(err)
+        })
+}
+
+export const acceptRequest = (id, name) => dispatch => {
     dispatch({type: ACCEPT_REQUEST_START});
     const request = {
-        headers: {authorization:localStorage.getItem('jwt')}
+        headers: {authorization: localStorage.getItem('jwt')}
     }
-    
+
     axios
-      .put(`${BASE_URL}/requests/${id}`, request)
+      .put(`${BASE_URL}/requests/${id}`, name, request)
       .then(res => {
           dispatch({
               type: ACCEPT_REQUEST_SUCCESS,
-              payload: {
-                volunteer_assigned: id
-              }
+              payload: res
           })
       })
       .catch(err => dispatch({
@@ -109,16 +109,15 @@ export const acceptRequest = (id) => dispatch => {
 export const deleteRequest = (id) => dispatch => {
     dispatch({ type: DELETE_REQUEST_START});
     const request = {
-        headers: {authorization:localStorage.getItem('jwt')}
+        headers: {authorization: localStorage.getItem('jwt')}
     }
     axios
       .delete(`${BASE_URL}/requests/${id}`, request)
       .then(res =>{
         dispatch({
           type: DELETE_REQUEST_SUCCESS,
-          payload: res.data
+          payload: id
         })
-        //see if res.data need to be specific, ignore for now
       })
       .catch(err => dispatch({
         type: DELETE_REQUEST_FAILURE,

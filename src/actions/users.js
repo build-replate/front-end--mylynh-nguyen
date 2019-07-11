@@ -85,9 +85,8 @@ export const deleteUser = (id) => dispatch => {
     .then(res =>{
       dispatch({
         type: DELETE_USER_SUCCESS,
-        payload: res.data
+        payload: id
       })
-      //see if res.data need to be specific, ignore for now
     })
     .catch(err => dispatch({
       type: DELETE_USER_FAILURE,

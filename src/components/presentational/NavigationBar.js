@@ -9,6 +9,7 @@ export default class NavigationBar extends Component {
     }
   
     render() {
+      
 
       const businessLinks = (
         <ul className="nav navbar-nav navbar-right">
@@ -43,8 +44,14 @@ export default class NavigationBar extends Component {
                 <Link to="/" className="navbar-brand">Replate</Link>
               </div>
               <div>
-                {/* {this.props.loggedIn ? userLinks : guestLinks} */}
-                {this.props.loggedIn ? this.props.currentUser.userType === "business" ? businessLinks : this.props.currentUser.userType === "volunteer" ? volunteerLinks : guestLinks : guestLinks}
+                {/* {this.props.loggedIn ? businessLinks : guestLinks} */}
+                {this.props.loggedIn 
+                ? this.props.currentUser.userType === "business" 
+                  ? businessLinks 
+                    : this.props.currentUser.userType === "volunteer" 
+                    ? volunteerLinks 
+                  : guestLinks 
+                : guestLinks}
               </div>
             </div>
           </nav>
