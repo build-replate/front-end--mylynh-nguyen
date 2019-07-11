@@ -13,10 +13,7 @@ export default class UserList extends Component {
                 <User
                   id={user.id}
                   username={user.username}
-                  email={user.email}
-                  phone={user.phone}
                   key={user.id}
-                  userType={user.user_type}
                 />
               );
             })}

@@ -20,6 +20,7 @@ export class NavigationBar extends Component {
           <li><a href="#" onClick={this.logout}>Logout</a></li>
           <li><Link to="/welcome">Jokes</Link></li>
           <li><Link to="/users">User List</Link></li>
+          <li><Link to="/add-joke">Add Joke</Link></li>
     
         </ul>
       );

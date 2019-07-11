@@ -18,7 +18,7 @@ export default class App extends Component {
             <Switch>
               <Route path='/login' component={LoginForm} />
               <Route path='/register' component={Register} />
-              <Route path='/add-Joke' component={AddJoke} />
+              <Route path='/add-joke' component={AddJoke} />
               <Route path='/welcome' component={authenticate(Welcome)} />
               <Route path='/users' component={UserPage} />
               <Route exact path="/" component={Home}/>
