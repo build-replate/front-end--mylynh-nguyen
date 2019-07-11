@@ -4,7 +4,10 @@ import {
   FETCH_ALL_JOKES_FAILURE, 
   DELETE_JOKE_START, 
   DELETE_JOKE_SUCCESS, 
-  DELETE_JOKE_FAILURE
+  DELETE_JOKE_FAILURE,
+  FETCH_PUBLICJOKES_START,
+  FETCH_PUBLICJOKES_SUCCESS,
+  FETCH_PUBLICJOKES_FAILURE
 } from '../actions'
 
 const INITIAL_STATE = {
@@ -28,7 +31,24 @@ export default function jokesReducer(state = INITIAL_STATE, action) {
           jokes: action.payload
         }
       case FETCH_ALL_JOKES_FAILURE:
-        return{
+        return {
+          ...state,
+          fetching: false,
+          errors: action.payload
+        }
+      case FETCH_PUBLICJOKES_START:
+        return {
+          ...state,
+          fetching: true
+        }
+      case FETCH_PUBLICJOKES_SUCCESS:
+        return {
+          ...state, 
+          fetching: false,
+          jokes: action.payload
+        }
+      case FETCH_PUBLICJOKES_FAILURE:
+        return {
           ...state,
           fetching: false,
           errors: action.payload

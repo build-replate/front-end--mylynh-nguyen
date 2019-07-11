@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { Route, BrowserRouter, Switch} from 'react-router-dom';
-import LoginForm from './components/containers/LoginForm';
-import Register from './components/containers/Register';
-import RegisterBusiness from './components/containers/RegisterBusiness';
+import LoginForm from './components/presentational/LoginForm';
+import Register from './components/presentational/Register';
 import Welcome from './components/presentational/Welcome';
-import NavigationBar from './components/containers/NavigationBar';
+import NavigationBar from './components/presentational/NavigationBar';
 import authenticate from './components/higher-order/authenticate';
 import UserPage from './components/presentational/UserPage';
-import AddRequest from './components/containers/AddRequest';
+import AddJoke from './components/presentational/AddJoke';
+import Home from './components/presentational/Home';
 
 export default class App extends Component {
   render(){
@@ -17,12 +17,11 @@ export default class App extends Component {
             <NavigationBar/>
             <Switch>
               <Route path='/login' component={LoginForm} />
-              <Route path='/register-business' component={RegisterBusiness} />
               <Route path='/register' component={Register} />
-              <Route path='/add-request' component={AddRequest} />
+              <Route path='/add-Joke' component={AddJoke} />
               <Route path='/welcome' component={authenticate(Welcome)} />
               <Route path='/users' component={UserPage} />
-              <Route render={() => <h3>Welcome to Replate</h3>} />
+              <Route exact path="/" component={Home}/>
             </Switch>
           </div>
         </BrowserRouter>)

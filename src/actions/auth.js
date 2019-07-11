@@ -1,7 +1,7 @@
 import axios from 'axios';
 import jwtDecode from 'jwt-decode';
 
-const BASE_URL = 'https://bw-dad-jokes.herokuapp.com/';
+const BASE_URL = 'https://bw-dad-jokes.herokuapp.com';
 
 export const REGISTER_USER_START = "REGISTER_USER_START"
 export const REGISTER_USER_SUCCESS = "REGISTER_USER_SUCCESS"

@@ -8,6 +8,10 @@ export const FETCH_ALL_JOKES_START =  "FETCH_ALL_JOKES_START"
 export const FETCH_ALL_JOKES_SUCCESS = "FETCH_ALL_JOKES_SUCCESS"
 export const FETCH_ALL_JOKES_FAILURE = "FETCH_ALL_JOKES_FAILURE"
 
+export const FETCH_PUBLICJOKES_START = "FETCH_ALL_PUBLICJOKES_START"
+export const FETCH_PUBLICJOKES_SUCCESS = "FETCH_ALL_PUBLICJOKES_SUCCESS"
+export const FETCH_PUBLICJOKES_FAILURE = "FETCH_ALL_PUBLICJOKES_FAILURE"
+
 export const ADD_JOKE_START = "ADD_JOKE_START"
 export const ADD_JOKE_SUCCESS = "ADD_JOKE_SUCCESS"
 export const ADD_JOKE_FAILURE = "ADD_JOKE_FAILURE"
@@ -22,13 +26,16 @@ export const DELETE_JOKE_FAILURE="DELETE_JOKE_FAILURE"
 
 
 
-const BASE_URL = 'https://bw-dad-jokes.herokuapp.com/';
+const BASE_URL = 'https://bw-dad-jokes.herokuapp.com';
 
 export const fetchJokeById = (id) => (dispatch) => {
     dispatch({type: FETCH_JOKE_START })
+    const token = {
+        headers: {authorization: localStorage.getItem('jwt')}
+    }
 
     axios
-        .get(`${BASE_URL}/api/jokes/${id}`)
+        .get(`${BASE_URL}/api/jokes/${id}`, token)
         .then(res => {
             dispatch({
                 type: FETCH_JOKE_SUCCESS,
@@ -45,10 +52,8 @@ export const fetchJokeById = (id) => (dispatch) => {
 
 export const fetchAllJokes = () => (dispatch) => {
     const token = {
-        headers: {authorization: localStorage.getItem('jwt')}
+        headers: { authorization: localStorage.getItem('jwt') }
     }
-
-    if (token) {
         dispatch({ type: FETCH_ALL_JOKES_START })
         axios
             .get(`${BASE_URL}/api/jokes`, token)
@@ -65,6 +70,23 @@ export const fetchAllJokes = () => (dispatch) => {
                 })
             })
     }
+
+export const fetchPublicJokes = () => (dispatch) => {
+        dispatch({ type: FETCH_PUBLICJOKES_START })
+        axios
+            .get(`${BASE_URL}/api/jokes`)
+            .then(res => {
+                dispatch({
+                    type: FETCH_PUBLICJOKES_SUCCESS,
+                    payload: res.data
+                })
+            })
+            .catch(err => {
+                dispatch({
+                    type: FETCH_PUBLICJOKES_FAILURE,
+                    payload: err
+                })
+            })
 }
 
 export const addJoke = (sentJoke) => dispatch => {

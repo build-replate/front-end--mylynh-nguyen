@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const BASE_URL = 'https://bw-dad-jokes.herokuapp.com/';
+const BASE_URL = 'https://bw-dad-jokes.herokuapp.com';
 
 
 // READ
@@ -20,7 +20,7 @@ export const fetchAllUsers = () => (dispatch) => {
       .then(res => {
         dispatch({
           type: FETCH_USERS_SUCCESS,
-          payload: res.data
+          payload: res.data.users
         })
       })
       .catch(err => dispatch({

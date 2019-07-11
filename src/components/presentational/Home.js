@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import Jokes from './Jokes';
-import { fetchAllJokes } from '../../actions';
+import { fetchPublicJokes } from '../../actions';
 import { connect } from 'react-redux';
 
-export class Welcome extends Component {
+export class Home extends Component {
 
     componentDidMount(){
-        this.props.fetchAllJokes();
+        this.props.fetchPublicJokes();
     }
 
     render() {
@@ -18,11 +18,10 @@ export class Welcome extends Component {
     }
 }
 const mapStateToProps = (state) =>{
-    console.log(state)
     return {
         jokes: state.jokes.jokes,
         loggedIn: state.auth.loggedIn
     }
 }
-export default connect(mapStateToProps, { fetchAllJokes })(Welcome);
+export default connect(mapStateToProps, { fetchPublicJokes })(Home);
 

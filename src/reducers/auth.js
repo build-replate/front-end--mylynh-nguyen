@@ -17,8 +17,8 @@ const INITIAL_STATE = (token => ({
 export default function authReducer(state=INITIAL_STATE, action) {
     switch(action.type) {
         case LOGOUT_USER:
-            localStorage.getItem('jwt') 
-            && localStorage.removeItem('jwt')
+            localStorage.getItem('jwt');
+            localStorage.removeItem('jwt');
             return {
                 ...state,
                 loggedIn: false,

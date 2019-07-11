@@ -3,7 +3,7 @@ import { fetchAllUsers } from '../../actions';
 import { connect } from 'react-redux';
 import UserList from './UserList'
 
-class UserPage extends Component {
+export class UserPage extends Component {
 
     componentDidMount(){
         this.props.fetchAllUsers();
@@ -23,5 +23,5 @@ const mapStateToProps = (state) =>{
         users: state.user.users
     }
 }
-export default connect(mapStateToProps, {fetchAllUsers})(UserPage);
+export default connect(mapStateToProps, { fetchAllUsers })(UserPage);
 
