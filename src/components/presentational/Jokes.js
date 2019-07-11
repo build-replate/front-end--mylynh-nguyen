@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import {deleteRequest, fetchUserById} from '../../actions';
 import Request from './Request';
 
 
-export default class Requests extends Component {
+export class Requests extends Component {
     render() {
       return (
         <div className="requests-list">
@@ -29,4 +31,10 @@ export default class Requests extends Component {
       );
     }
   }
-  
+
+const mapStateToProps = state => {
+    return state.auth
+}
+
+
+export default connect(mapStateToProps, { fetchUserById, deleteRequest })(Requests);

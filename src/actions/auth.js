@@ -1,17 +1,7 @@
 import axios from 'axios';
 import jwtDecode from 'jwt-decode';
 
-const BASE_URL = 'https://replate-lambda.herokuapp.com';
-
-// TODO: add action types
-
-// export function setAuthorizationToken(token) {
-//   if (token) {
-//     axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-//   } else {
-//     delete axios.defaults.headers.common['Authorization'];
-//   }
-// }
+const BASE_URL = 'https://bw-dad-jokes.herokuapp.com/';
 
 export const REGISTER_USER_START = "REGISTER_USER_START"
 export const REGISTER_USER_SUCCESS = "REGISTER_USER_SUCCESS"
@@ -68,5 +58,3 @@ export const logout = () => {
         type: LOGOUT_USER
     }
 }
-
-// HELPERS 

@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { addRequest } from '../../actions';
+import { withRouter } from 'react-router-dom';
 
 
-export default class AddRequest extends Component {
+export class AddRequest extends Component {
     state = {
       request_title: '',
       request_desc: '',
@@ -80,3 +83,9 @@ export default class AddRequest extends Component {
   }
 }
 
+
+const mapStateToProps = (state) => {
+  return state.auth
+}
+
+export default withRouter(connect(mapStateToProps, { addRequest })(AddRequest));

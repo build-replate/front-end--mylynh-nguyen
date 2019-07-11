@@ -1,29 +1,24 @@
 
 import React, {Component} from 'react';
 import { Link } from 'react-router-dom';
+import { compose } from 'redux';
+import { connect } from 'react-redux';
+import { logout } from '../../actions';
+import { withRouter } from 'react-router-dom';
 
-export default class NavigationBar extends Component {
+
+export class NavigationBar extends Component {
     logout = (e) => {
       this.props.logout();
       this.props.history.push('/');
     }
   
     render() {
-      
 
-      const businessLinks = (
-        <ul className="nav navbar-nav navbar-right">
-        <li><a href="#" onClick={this.logout}>Logout</a></li>
-        <li><Link to="/add-request">Add a request</Link></li>
-        <li><Link to="/welcome">Requests</Link></li>
-        <li><Link to="/users">User List</Link></li>
-        </ul>
-      );
-
-      const volunteerLinks = (
+      const userLinks = (
         <ul>
           <li><a href="#" onClick={this.logout}>Logout</a></li>
-          <li><Link to="/welcome">Requests</Link></li>
+          <li><Link to="/welcome">Jokes</Link></li>
           <li><Link to="/users">User List</Link></li>
     
         </ul>
@@ -31,8 +26,7 @@ export default class NavigationBar extends Component {
   
       const guestLinks = (
           <ul>
-            <li><Link to="/register">Volunteer Registration</Link></li>
-            <li><Link to="/register-business">Business Registration</Link></li>
+            <li><Link to="/register">Register</Link></li>
             <li><Link to="/login">Login</Link></li>
           </ul>
       );
@@ -41,20 +35,26 @@ export default class NavigationBar extends Component {
           <nav>
             <div className="container-fluid">
               <div className="navbar-header">
-                <Link to="/" className="navbar-brand">Replate</Link>
+                <Link to="/" className="navbar-brand">Dad Jokes</Link>
               </div>
               <div>
-                {/* {this.props.loggedIn ? businessLinks : guestLinks} */}
-                {this.props.loggedIn 
-                ? this.props.currentUser.userType === "business" 
-                  ? businessLinks 
-                    : this.props.currentUser.userType === "volunteer" 
-                    ? volunteerLinks 
-                  : guestLinks 
-                : guestLinks}
+                {
+                  this.props.loggedIn 
+                  ? userLinks 
+                  : guestLinks
+                }
               </div>
             </div>
           </nav>
       );
     }
   }
+
+
+function mapStateToProps(state) {
+    return state.auth
+}
+  
+export default compose(withRouter,
+    connect(mapStateToProps, { logout }))(NavigationBar)
+  

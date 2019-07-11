@@ -1,21 +1,18 @@
 import React, { Component } from 'react';
 import './LoginForm.css';
+import { compose } from 'redux';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
+import { loginUser, logout } from '../../actions';
 
 
-export default class LoginForm extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
+export class LoginForm extends Component {
+    state = {
       username: '',
       password: '',
     };
-
-    this.onSubmit = this.onSubmit.bind(this);
-    this.onChange = this.onChange.bind(this);
-  }
-
-
-  onSubmit(e) {
+    
+  onSubmit = (e) => {
     e.preventDefault();
     this.props.loginUser(this.state);
       setTimeout(() => {   
@@ -24,7 +21,8 @@ export default class LoginForm extends Component {
         } 
       }, 3000);
   }
-  onChange(e) {
+  
+  onChange = (e) => {
     this.setState({ [e.target.name]: e.target.value });
   }
 
@@ -34,18 +32,38 @@ export default class LoginForm extends Component {
     return (
       
   <form onSubmit={this.onSubmit}>
-  <div className="form-group">
-        <label>Username</label>
-        <input className="form-control" type="text" name="username" value={username} onChange={this.onChange} placeholder="password" />
-     </div>
-     <div className="form-group">
-        <label>Password</label>
-        <input className="form-control" type="password" name="password" value={password} onChange={this.onChange} placeholder="password" />
-     </div>
-     <button type="submit" className="btn btn-black">Login</button>
+    <div className="form-group">
+      <label>Username</label>
+      <input 
+        className="form-control" 
+        type="text" 
+        name="username" 
+        value={username} 
+        onChange={this.onChange} 
+        placeholder="password" 
+      />
+    </div>
+    <div className="form-group">
+      <label>Password</label>
+      <input 
+        className="form-control" 
+        type="password" 
+        name="password" 
+        value={password} 
+        onChange={this.onChange} 
+        placeholder="password" 
+      />
+    </div>
+    <button type="submit" className="btn btn-black">Login</button>
 
   </form> 
       );
     }
   }
   
+const mapStateToProps = state => {
+    return state.auth
+}
+
+export default compose(withRouter,
+    connect(mapStateToProps, { loginUser, logout }))(LoginForm)

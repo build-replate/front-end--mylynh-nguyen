@@ -1,15 +1,14 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { registerUser } from '../../actions';
+import { withRouter } from 'react-router-dom';
 
 
-export default class Register extends Component {
+export class Register extends Component {
     state = {
       username: '',
-      contact_name: '',
-      password: '',
-      phone:'',
-      user_type: 'volunteer',
-      email: ''
+      password: ''
     };
 
   onChange = (e) => {
@@ -47,56 +46,6 @@ export default class Register extends Component {
                 onChange={this.onChange}
               />
             </div>
-
-            <div className="form-group">
-              <label htmlFor="contact_name">Full Name</label>
-              <input
-                type="text"
-                name="contact_name"
-                value={this.state.contact_name}
-                onChange={this.onChange}
-              />
-            </div>
-
-            <div className="form-group">
-              <label htmlFor="business_name">Business</label>
-              <input
-                type="text"
-                name="business_name"
-                value={this.state.business_name}
-                onChange={this.onChange}
-              />
-            </div>
-
-            <div className="form-group">
-              <label htmlFor="phone">Phone</label>
-              <input
-                type="text"
-                name="phone"
-                value={this.state.phone}
-                onChange={this.onChange}
-              />
-            </div>
-
-            <div className="form-group">
-              <label htmlFor="address">Address</label>
-              <input
-                type="text"
-                name="address"
-                value={this.state.address}
-                onChange={this.onChange}
-              />
-            </div>
-
-            <div className="form-group">
-              <label htmlFor="email">Email</label>
-              <input
-                type="text"
-                name="email"
-                value={this.state.email}
-                onChange={this.onChange}
-              />
-            </div>
             
             <div className="form-group">
               <button className="btn btn-primary btn-lg">Register</button>
@@ -112,3 +61,10 @@ export default class Register extends Component {
 Register.propTypes = {
   signup: PropTypes.func.isRequired
 };
+
+
+const mapStateToProps = state => {
+  return state.auth
+}
+
+export default withRouter(connect(mapStateToProps, { registerUser })(Register));

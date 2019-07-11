@@ -1,4 +1,4 @@
 
 export * from './auth'
-export * from './requests'
+export * from './jokes'
 export * from './users'
